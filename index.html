@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Gis 🌻💛</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(#fff9df, #ffe9a8);
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #956000;
+    text-align: center;
+}
+
+h1 {
+    padding-top: 25px;
+    font-size: 36px;
+}
+
+p {
+    font-size: 17px;
+}
+
+/* PANTALLA DEL SOBRE */
+#inicio {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#inicio h1 {
+    padding-top: 0;
+}
+
+.sobre {
+    position: relative;
+    width: 230px;
+    height: 150px;
+    margin-top: 30px;
+    background: #e9b94f;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px #c49a40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cuerpo-sobre {
+    position: absolute;
+    inset: 0;
+    background: #f5d477;
+    clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+}
+
+.tapa {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    background: #e7b84e;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 2;
+}
+
+.sobre span {
+    position: relative;
+    z-index: 3;
+    margin-top: 65px;
+    font-weight: bold;
+    color: #80520e;
+    background: #fff2c7;
+    padding: 10px 24px;
+    border-radius: 20px;
+}
+
+/* SORPRESA */
+#sorpresa {
+    display: none;
+}
+
+.escenario {
+    position: relative;
+    width: min(100%, 440px);
+    height: 410px;
+    margin: 20px auto;
+}
+
+.foto {
+    position: absolute;
+    width: 145px;
+    height: 185px;
+    object-fit: cover;
+    top: 147px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid white;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #c49a40;
+    z-index: 2;
+}
+
+.girasol {
+    position: absolute;
+    font-size: 43px;
+    transform: translate(-50%, -50%);
+    animation: movimiento 2s ease-in-out infinite alternate;
+}
+
+@keyframes movimiento {
+    from {
+        transform: translate(-50%, -50%) rotate(-10deg) scale(.95);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(10deg) scale(1.12);
+    }
+}
+
+.mensaje {
+    background: white;
+    border-radius: 20px;
+    padding: 17px;
+    max-width: 340px;
+    margin: 0 auto 30px;
+    box-shadow: 0 4px 15px #e4c66c;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA INICIAL -->
+<div id="inicio">
+    <h1>Para ti, Gis</h1>
+    <p>Abre esto</p>
+
+    <div class="sobre" onclick="abrirSorpresa()">
+        <div class="tapa"></div>
+        <div class="cuerpo-sobre"></div>
+        <span>ABRIR</span>
+    </div>
+</div>
+
+<!-- SORPRESA -->
+<div id="sorpresa">
+
+    <h1>Para Gis 🌻</h1>
+    <p>unas flores en linea jeje</p>
+
+    <div class="escenario" id="corazon">
+        <img class="foto" src="imagenes/Gis.jpeg" alt="Gis">
+    </div>
+
+    <div class="mensaje">
+        hola jeje
+    </div>
+
+</div>
+
+<script>
+function abrirSorpresa() {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("sorpresa").style.display = "block";
+}
+
+const corazon = document.getElementById("corazon");
+
+for (let i = 0; i < 32; i++) {
+
+    const t = (Math.PI * 2 * i) / 32;
+
+    const x = 16 * Math.pow(Math.sin(t), 3);
+
+    const y = 13 * Math.cos(t)
+        - 5 * Math.cos(2*t)
+        - 2 * Math.cos(3*t)
+        - Math.cos(4*t);
+
+    const flor = document.createElement("span");
+
+    flor.className = "girasol";
+    flor.textContent = "🌻";
+
+    flor.style.left = (50 + x * 3.5) + "%";
+    flor.style.top = (205 - y * 11) + "px";
+    flor.style.animationDelay = (i * 0.08) + "s";
+
+    corazon.appendChild(flor);
+}
+</script>
+
+</body>
+</html>
